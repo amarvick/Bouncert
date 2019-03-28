@@ -22,13 +22,13 @@ export default class MainScreen extends React.Component {
                 />
 
                 <Button block rounded style={styles.buttonStyle}>
-                    <Text>
+                    <Text style={styles.textStyle}>
                         Sign Up
                     </Text> 
                 </Button>
 
                 <Button block rounded style={styles.buttonStyle}>
-                    <Text>
+                    <Text style={styles.textStyle}>
                         Log In
                     </Text>
                 </Button>
@@ -51,6 +51,13 @@ const styles = StyleSheet.create({
     },
 
     buttonStyle: {
-        marginVertical: 10
+        backgroundColor: "#4286f4",
+        marginVertical: 10,
+        marginHorizontal: 10
     },
+
+    textStyle: {
+        // color: "#FF7F00",
+        fontSize: 22
+    }
 });
