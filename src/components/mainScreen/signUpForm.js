@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button, Container, Content, Form, Input, Item } from 'native-base'
 
-import { loadUserData } from '../../actions/userActions'
 
-class LoginForm extends React.Component {
+export default class SignUpForm extends React.Component {
     constructor() {
         super();
     
@@ -13,6 +11,7 @@ class LoginForm extends React.Component {
             username: '',
             password: '',
         };
+    
     }
 
     render() {
@@ -38,10 +37,10 @@ class LoginForm extends React.Component {
                 <Button 
                     block rounded 
                     style={styles.buttonStyle}
-                    onPress={this.props.dispatch(loadUserData)}
+                    onPress={this.props.backToHomeScreen}
                 >
                     <Text style={styles.textStyle}>
-                        Log In
+                        Sign Up
                     </Text> 
                 </Button>
 
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center',
-        
     },
 
     form: {
@@ -84,20 +82,3 @@ const styles = StyleSheet.create({
         fontSize: 22
     }
 });
-
-// wraps dispatch to create nicer functions to call within our component
-// Mapping dispatch actions to the props
-const mapDispatchToProps = (dispatch) => ({
-    dispatch: dispatch,
-    startup: () => dispatch(StartupActions.startup())
-  })
-  
-  // Maps the state in to props (for displaying on the front end)
-  const mapStateToProps = (state) => ({
-    state: state
-    // error: state.career.error,
-    // loading: state.career.loading,
-    // loggedIn: state.auth.isAuthenticated
-  })
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

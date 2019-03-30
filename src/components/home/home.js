@@ -9,7 +9,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={logo}/>
+        Welcome to the app!
       </View>
     );
   }

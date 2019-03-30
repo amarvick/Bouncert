@@ -1,10 +1,10 @@
 {
-  "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 21372,
   "expoServerNgrokUrl": "https://ya-unq.anonymous.bouncert-app.exp.direct",
   "packagerNgrokUrl": "https://packager.ya-unq.anonymous.bouncert-app.exp.direct",
-  "ngrokPid": 5532,
-  "webpackServerPort": null
+  "ngrokPid": 10320,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 21568,
+  "webpackServerPort": null,
+  "devToolsPort": 19002
 }
