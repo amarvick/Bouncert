@@ -3,10 +3,9 @@ import axios from 'axios';
 
 export function loadUserData() {
     return function action(dispatch) {
-        alert('eeeee')
-        // dispatch({
-        //     type: UserActionTypes.FETCHING_USERS
-        // })
+        dispatch({
+            type: UserActionTypes.FETCHING_USER
+        })
 
         // fetch(link + "api/getUserData")  // AM - shoul probably change later
         //     .then(data => data.json())

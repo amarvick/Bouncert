@@ -1,10 +1,9 @@
 {
-  "expoServerNgrokUrl": "https://ya-unq.anonymous.bouncert-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.ya-unq.anonymous.bouncert-app.exp.direct",
-  "ngrokPid": 10320,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 21568,
-  "webpackServerPort": null,
-  "devToolsPort": 19002
+  "expoServerNgrokUrl": "https://m9-qyn.anonymous.bouncert-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.m9-qyn.anonymous.bouncert-app.exp.direct",
+  "ngrokPid": 23304,
+  "packagerPort": null,
+  "packagerPid": null,
+  "devToolsPort": 19002,
+  "expoServerPort": 19000
 }
