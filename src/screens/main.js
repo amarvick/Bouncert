@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
 import { Login } from './login'
-import { Button } from '../components'
+// import { Signup } from './signup'
 
 /**
  * Main component. Display greeting when user is logged in,
@@ -31,6 +31,7 @@ class App extends Component {
       <View>
         <Text>Welcome {fullName}!</Text>
         <Button
+          title="logout"
           onPress={() => {
             doLogout()
           }}

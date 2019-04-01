@@ -3,12 +3,12 @@ import {
   StyleSheet,
   View,
   Text,
+  Button,
   TextInput,
   ActivityIndicator
 } from 'react-native'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
-import { Button } from '../components'
 
 /**
  * A login component that display username and password text field.
@@ -51,6 +51,7 @@ class App extends Component {
           value={this.state.password}
         />
         <Button
+          title="login"
           onPress={() => {
             doLogin(this.state.username, this.state.password)
           }}
@@ -76,7 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  loading: state.career.loading
+  loading: state.user.loading
 })
 
 /**
