@@ -1,9 +1,9 @@
 {
   "expoServerNgrokUrl": "https://m9-qyn.anonymous.bouncert-app.exp.direct",
   "packagerNgrokUrl": "https://packager.m9-qyn.anonymous.bouncert-app.exp.direct",
-  "ngrokPid": 23304,
-  "packagerPort": null,
-  "packagerPid": null,
+  "ngrokPid": 20896,
+  "packagerPort": 19001,
+  "packagerPid": 25404,
   "devToolsPort": 19002,
   "expoServerPort": 19000
 }
