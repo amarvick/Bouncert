@@ -55,9 +55,14 @@ class App extends Component {
           onPress={() => {
             doLogin(this.state.username, this.state.password)
           }}
-        >
-          Login
-        </Button>
+        />
+
+        <Button
+          title="Back"
+          onPress={() => {
+            this.props.goBack()
+          }}
+        />
       </View>
     )
   }
@@ -84,3 +89,4 @@ const mapStateToProps = (state) => ({
  * Login screen.
  */
 export const Login = connect(mapStateToProps, mapDispatchToProps)(App)
+
