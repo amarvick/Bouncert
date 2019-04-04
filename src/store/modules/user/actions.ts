@@ -1,6 +1,24 @@
 import * as types from './constants'
 import { actions } from '../'
 
+
+
+/**
+* Sign Up.
+* @param {string} firstName 
+* @param {string} lastName
+* @param {string} dateOfBirth
+* @param {string} email
+* @param {string} password
+* @param {string} passwordVerify
+*/
+
+export const signup = (firstName: string, lastName: string, dateOfBirth: string, email: string, password: string, passwordVerify: string) => {
+    return dispatch => {
+        alert('Signed Up')
+    }
+}
+
 /**
 * Sign in.
 * @param {string} username 

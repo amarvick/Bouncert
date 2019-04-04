@@ -3,10 +3,18 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
   TextInput,
   ActivityIndicator
 } from 'react-native'
+import { 
+  Button,
+  Container,
+  Content,
+  Form,
+  Input,
+  Item,
+  Label
+} from 'native-base'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
 
@@ -24,8 +32,8 @@ class App extends Component {
 
     // init local state
     this.state = {
-      username: 'admin',
-      password: 'secret'
+      username: '',
+      password: ''
     }
   }
 
@@ -40,40 +48,70 @@ class App extends Component {
 
     // display login screen
     return (
-      <View style={styles.container}>
+      <View style={styles.mainView}>
         <Text>Login</Text>
-        <TextInput
-          onChangeText={username => this.setState({ username })}
-          value={this.state.username}
-        />
-        <TextInput
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
+     
+        <View style={styles.form}>
+          <Label>Username</Label>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={username => this.setState({ username })}
+            value={this.state.username}
+          />
+
+          <Label>Password</Label>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={password => this.setState({ password })}
+            value={this.state.password}
+          />
+        </View>
+    
         <Button
+          block rounded
+          style={styles.button}
           title="login"
           onPress={() => {
             doLogin(this.state.username, this.state.password)
           }}
-        />
+        ><Text>Log in</Text></Button>
+
 
         <Button
+          block rounded
+          style={styles.button}
           title="Back"
           onPress={() => {
             this.props.goBack()
           }}
-        />
+        ><Text>Back</Text></Button>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'center'
+  mainView: {
+    backgroundColor: '#ff7d0c',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10
+  },
+
+  textInput: {
+    backgroundColor: 'white',
+    marginTop: 3
+  },
+
+  form: {
+    alignSelf: 'stretch'
+  },
+
+  button: {
+    marginTop: 10,
+    width: "100%"
   }
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,

@@ -1,9 +1,24 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, Button } from 'react-native'
+import { 
+  StyleSheet, 
+  View, 
+  Image, 
+  Text
+} from 'react-native'
+import { 
+  Button,
+  Container,
+  Content,
+  Form,
+  Input,
+  Item,
+  Label
+} from 'native-base'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
 import { Login } from './login'
-// import { Signup } from './signup'
+import { SignUp } from './signup'
+import { MainOptions } from './mainOptions'
 
 var logo = require('../../assets/logo1.png')
 
@@ -23,19 +38,13 @@ class App extends Component {
     }
 
     this.displayMain = this.displayMain.bind(this)
+    this.displaySignUp = this.displaySignUp.bind(this)
+    this.displayLogin = this.displayLogin.bind(this)
   }
 
-  displayMain() {
-    this.setState({ screenDisplayStatus: 'Main'})
-  }
-
-  displaySignUp() {
-    this.setState({ screenDisplayStatus: 'Sign Up'})
-  }
-
-  displayLogin() {
-    this.setState({ screenDisplayStatus: 'Login'})
-  }
+  displayMain() { this.setState({ screenDisplayStatus: 'Main'}) }
+  displaySignUp() { this.setState({ screenDisplayStatus: 'Sign Up'}) }
+  displayLogin() { this.setState({ screenDisplayStatus: 'Login'}) }
 
   render() {
     const { doLogout, loggedIn, fullName } = this.props
@@ -43,34 +52,9 @@ class App extends Component {
     var screenDisplayStatus = this.state.screenDisplayStatus
     var screenDisplay
 
-    // AM - make this in to a component itself 'Select Options' to reduce code.
-    if (screenDisplayStatus === 'Main') screenDisplay = (
-      <View>
-        <Button
-          style={styles.button}
-          title="Sign Up"
-          onPress={() => {
-            this.displaySignUp()
-          }}
-        />
-
-        <Button
-          style={styles.button}
-          title="Log In"
-          onPress={() => {
-            this.displayLogin()
-          }}
-        />
-      </View>
-    )
-
-    else if (screenDisplayStatus === 'Login') screenDisplay = (
-      <Login goBack={this.displayMain}/>
-    )
-    
-    else if (screenDisplayStatus === 'Sign Up') screenDisplay = (
-      <SignUp goBack={this.displayMain}/>
-    )
+    if (screenDisplayStatus === 'Main') screenDisplay = ( <MainOptions displaySignUp={this.displaySignUp} displayLogin={this.displayLogin}/> )
+    else if (screenDisplayStatus === 'Login') screenDisplay = ( <Login goBack={this.displayMain}/> )
+    else if (screenDisplayStatus === 'Sign Up') screenDisplay = ( <SignUp goBack={this.displayMain}/> )
 
     // Display login screen when user is not logged in
     if (!loggedIn) {
@@ -88,6 +72,8 @@ class App extends Component {
       <View>
         <Text>Welcome {fullName}!</Text>
         <Button
+          block rounded
+          style={styles.button}
           title="logout"
           onPress={() => {
             doLogout()
@@ -109,7 +95,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    width: 100
+    marginTop: 10,
+    width: "100%"
   }
 });
 
