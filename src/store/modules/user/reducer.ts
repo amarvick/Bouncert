@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { LOGIN, LOGOUT } from './constants'
+import { LOGIN, LOGOUT, SIGNUP } from './constants'
 
 export type UserState = {
     loggedIn: boolean,

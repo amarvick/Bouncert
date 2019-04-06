@@ -5,17 +5,25 @@ import { actions } from '../'
 
 /**
 * Sign Up.
-* @param {string} firstName 
-* @param {string} lastName
+* @param {string} name 
+* @param {string} username
 * @param {string} dateOfBirth
 * @param {string} email
 * @param {string} password
 * @param {string} passwordVerify
 */
 
-export const signup = (firstName: string, lastName: string, dateOfBirth: string, email: string, password: string, passwordVerify: string) => {
+export const signup = (name: string, username: string, dateOfBirth: string, email: string, password: string, passwordVerify: string) => {
     return dispatch => {
-        alert('Signed Up')
+        dispatch(actions.app.loading())
+        alert('name: ' + name)
+        alert('username: ' + username)
+        alert('dateOfBirth: ' + dateOfBirth)
+        alert('email: ' + email)
+        alert('password: ' + password)
+        alert('passwordVerify: ' + passwordVerify)
+
+        dispatch(actions.user.login(username, password))
     }
 }
 
@@ -34,7 +42,7 @@ export const login = (username: string, password: string) => {
         dispatch(actions.app.loading())
 
         // simulate ajax login
-        // in real world you can use `fetch` to make ajax request.
+        // in real world you can use `fetch` to make ajax request. AM - make this change when BE is complete
         setTimeout(() => {
             if (username === 'admin' && password === 'secret') {
                 dispatch({

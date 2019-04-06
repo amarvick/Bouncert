@@ -16,9 +16,9 @@ import {
 } from 'native-base'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
-import { Login } from './login'
-import { SignUp } from './signup'
-import { MainOptions } from './mainOptions'
+import { Login } from './notLoggedIn/login'
+import { SignUp } from './notLoggedIn/signup'
+import { MainOptions } from './notLoggedIn/mainOptions'
 
 var logo = require('../../assets/logo1.png')
 
@@ -79,7 +79,7 @@ class App extends Component {
             doLogout()
           }}
         >
-          Logout
+          <Text>Logout</Text>
         </Button>
       </View>
     )
