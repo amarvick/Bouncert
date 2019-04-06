@@ -1,19 +1,39 @@
-import React, { Component } from "react";
-import { Container, Header, Title, Button, Icon, Left, Right, Body } from "native-base";
-export default class HeaderSpan extends Component {
+import React, { Component } from 'react';
+import { 
+    Container, 
+    Header,
+    Left, 
+    Body, 
+    Right, 
+    Button, 
+    Icon, 
+    Title 
+} from 'native-base';
+
+export default class Header extends Component {
   render() {
     return (
       <Container>
-        <Header span>
+        <Header>
           <Left>
             <Button transparent>
-              <Icon name="arrow-back" />
+              <Icon name='arrow-back' />
             </Button>
           </Left>
           <Body>
-            <Title>Header Span</Title>
+            <Title>Header</Title>
           </Body>
-          <Right />
+          <Right>
+            <Button transparent>
+              <Icon name='search' />
+            </Button>
+            <Button transparent>
+              <Icon name='heart' />
+            </Button>
+            <Button transparent>
+              <Icon name='more' />
+            </Button>
+          </Right>
         </Header>
       </Container>
     );

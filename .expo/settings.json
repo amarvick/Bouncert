@@ -1,7 +1,7 @@
 {
+  "urlRandomness": "3u-epr",
   "hostType": "localhost",
   "lanType": "ip",
   "dev": true,
-  "minify": false,
-  "urlRandomness": "m9-qyn"
+  "minify": false
 }

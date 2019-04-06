@@ -16,7 +16,7 @@ import {
   Label
 } from 'native-base'
 import { connect } from 'react-redux'
-import { actions, States } from '../../store'
+import { actions, States } from '../../../store'
 
 /**
  * A login component that display username and password text field.
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export const MainOptions = App
+export const Main = App

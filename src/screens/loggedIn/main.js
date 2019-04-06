@@ -12,13 +12,14 @@ import {
   Form,
   Input,
   Item,
-  Label,
-  P
+  Label
 } from 'native-base'
 import { connect } from 'react-redux'
-import { actions, States } from '../store'
-// import { MainLI } from './loggedIn/main'
-import { MainNLI } from './notLoggedIn/main'
+import { actions, States } from '../../store'
+
+import { Header } from './header'
+
+var logo = require('../../assets/logo1.png')
 
 /**
  * Main component. Display greeting when user is logged in,
@@ -33,25 +34,11 @@ class App extends Component {
   }
 
   render() {
-    const { doLogout, loggedIn, fullName } = this.props
-
-    // Display login screen when user is not logged in
-    if (!loggedIn) {
-      return (
-        <View style={styles.mainView}>
-          <MainNLI/>
-        </View>
-      )
-    }
 
     // Display greeting with user full name displayed
     return (
       <View>
-        <P>
-          eeeee
-        </P>
-        {/* <MainLI/> */}
-        {/* <Text>Welcome {fullName}!</Text>
+        <Text>Welcome {fullName}!</Text>
         <Button
           block rounded
           style={styles.button}
@@ -61,7 +48,7 @@ class App extends Component {
           }}
         >
           <Text>Logout</Text>
-        </Button> */}
+        </Button>
       </View>
     )
   }
@@ -92,4 +79,4 @@ const mapStateToProps = (state) => ({
     fullName: state.user.fullName
 })
   
-export const Main = connect(mapStateToProps, mapDispatchToProps)(App)
+export const MainLI = connect(mapStateToProps, mapDispatchToProps)(App)

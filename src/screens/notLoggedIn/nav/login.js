@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import {
   StyleSheet,
@@ -17,10 +16,10 @@ import {
   Label
 } from 'native-base'
 import { connect } from 'react-redux'
-import { actions, States } from '../../store'
+import { actions, States } from '../../../store'
 
 /**
- * A signup component that displays a form for user to make an account.
+ * A login component that display username and password text field.
  * Loading indicator will show up when login is in process.
  * 
  * @class App
@@ -33,17 +32,13 @@ class App extends Component {
 
     // init local state
     this.state = {
-      name: '',
       username: '',
-      dateOfBirth: '',
-      email: '',
-      password: '',
-      passwordVerify: ''
+      password: ''
     }
   }
 
   render() {
-    const { loading, doSignup } = this.props
+    const { loading, doLogin } = this.props
 
     // show only loading indicator if loading state is true
     if (loading) {
@@ -54,35 +49,14 @@ class App extends Component {
     // display login screen
     return (
       <View style={styles.mainView}>
-        <Text>Sign Up</Text>
+        <Text>Login</Text>
      
         <View style={styles.form}>
-          <Label>Name</Label>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={name => this.setState({ name })}
-            value={this.state.name}
-          />
-
           <Label>Username</Label>
           <TextInput
             style={styles.textInput}
             onChangeText={username => this.setState({ username })}
             value={this.state.username}
-          />
-
-          <Label>Date of Birth</Label>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
-            value={this.state.dateOfBirth}
-          />
-
-          <Label>Email</Label>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={email => this.setState({ email })}
-            value={this.state.email}
           />
 
           <Label>Password</Label>
@@ -91,23 +65,16 @@ class App extends Component {
             onChangeText={password => this.setState({ password })}
             value={this.state.password}
           />
-
-          <Label>Confirm Password</Label>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={passwordVerify => this.setState({ passwordVerify })}
-            value={this.state.passwordVerify}
-          />
         </View>
-
+    
         <Button
           block rounded
           style={styles.button}
           title="login"
           onPress={() => {
-            doSignup(this.state.name, this.state.username, this.state.dateOfBirth, this.state.email, this.state.password, this.state.passwordVerify)
+            doLogin(this.state.username, this.state.password)
           }}
-        ><Text>Sign Up</Text></Button>
+        ><Text>Log in</Text></Button>
 
 
         <Button
@@ -149,7 +116,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
   startup: () => dispatch(StartupActions.startup()),
-  doSignup: (name, username, dateOfBirth, email, password, passwordVerify) => dispatch(actions.user.signup(name, username, dateOfBirth, email, password, passwordVerify))
+  doLogin: (username, password) => dispatch(actions.user.login(username, password))
 })
 
 const mapStateToProps = (state) => ({
@@ -159,4 +126,5 @@ const mapStateToProps = (state) => ({
 /**
  * Login screen.
  */
-export const SignUp = connect(mapStateToProps, mapDispatchToProps)(App)
+export const Login = connect(mapStateToProps, mapDispatchToProps)(App)
+
