@@ -12,12 +12,11 @@ import {
   Form,
   Input,
   Item,
-  Label,
-  P
+  Label
 } from 'native-base'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
-// import { MainLI } from './loggedIn/main'
+import { MainLI } from './loggedIn/main'
 import { MainNLI } from './notLoggedIn/main'
 
 /**
@@ -28,40 +27,23 @@ import { MainNLI } from './notLoggedIn/main'
  * @extends {Component}
  */
 class App extends Component {
-  constructor() {
-    super() 
+  constructor(props) {
+    super(props) 
   }
 
   render() {
     const { doLogout, loggedIn, fullName } = this.props
+    var screen
+
+    console.log(this.props)
 
     // Display login screen when user is not logged in
-    if (!loggedIn) {
-      return (
-        <View style={styles.mainView}>
-          <MainNLI/>
-        </View>
-      )
-    }
+    if (loggedIn) screen = (<MainNLI/>)
+    else screen = (<MainLI/>)
 
-    // Display greeting with user full name displayed
     return (
-      <View>
-        <P>
-          eeeee
-        </P>
-        {/* <MainLI/> */}
-        {/* <Text>Welcome {fullName}!</Text>
-        <Button
-          block rounded
-          style={styles.button}
-          title="logout"
-          onPress={() => {
-            doLogout()
-          }}
-        >
-          <Text>Logout</Text>
-        </Button> */}
+      <View style={styles.mainView}>
+        { screen }
       </View>
     )
   }
@@ -79,17 +61,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: "100%"
   }
-});
+})  
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatch: dispatch,
-    startup: () => dispatch(StartupActions.startup()),
-    doLogout: () => dispatch(actions.user.logout())
+  dispatch: dispatch,
+  startup: () => dispatch(StartupActions.startup()),
+  doLogout: () => dispatch(actions.user.logout())
 })
-  
+
 const mapStateToProps = (state) => ({
-    loggedIn: state.user.loggedIn,
-    fullName: state.user.fullName
+  loggedIn: state.user.loggedIn
 })
-  
+
 export const Main = connect(mapStateToProps, mapDispatchToProps)(App)

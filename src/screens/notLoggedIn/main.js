@@ -67,15 +67,14 @@ export class MainNLI extends Component {
 }
 
 const styles = StyleSheet.create({
-  mainView: {
-    backgroundColor: '#ff7d0c',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
-  },
-
-  button: {
-    marginTop: 10,
-    width: "100%"
-  }
+    mainView: {
+      backgroundColor: '#ff7d0c',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+  
+    button: {
+      marginTop: 10,
+      width: "100%"
+    }
 });

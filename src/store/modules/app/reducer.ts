@@ -14,6 +14,7 @@ const initialState: AppState = {
 export default handleActions(
     {
         [SET_LOADING]: (state: AppState = initialState, action): AppState => {
+            // AM - fix later
             return {
                 loading: action.payload
             }

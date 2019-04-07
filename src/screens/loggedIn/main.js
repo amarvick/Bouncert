@@ -17,9 +17,7 @@ import {
 import { connect } from 'react-redux'
 import { actions, States } from '../../store'
 
-import { Header } from './header'
-
-var logo = require('../../assets/logo1.png')
+import { NavHeader } from './header'
 
 /**
  * Main component. Display greeting when user is logged in,
@@ -29,15 +27,17 @@ var logo = require('../../assets/logo1.png')
  * @extends {Component}
  */
 class App extends Component {
-  constructor() {
-    super() 
+  constructor(props) {
+    super(props) 
   }
 
   render() {
+    var fullName = this.props.fullName
 
     // Display greeting with user full name displayed
     return (
       <View>
+        <NavHeader/>
         <Text>Welcome {fullName}!</Text>
         <Button
           block rounded
@@ -55,18 +55,11 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  mainView: {
-    backgroundColor: '#ff7d0c',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
-  },
-
   button: {
     marginTop: 10,
     width: "100%"
   }
-});
+})  
 
 const mapDispatchToProps = (dispatch) => ({
     dispatch: dispatch,
@@ -75,7 +68,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
   
 const mapStateToProps = (state) => ({
-    loggedIn: state.user.loggedIn,
     fullName: state.user.fullName
 })
   

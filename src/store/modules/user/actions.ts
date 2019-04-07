@@ -1,8 +1,6 @@
 import * as types from './constants'
 import { actions } from '../'
 
-
-
 /**
 * Sign Up.
 * @param {string} name 
@@ -15,14 +13,6 @@ import { actions } from '../'
 
 export const signup = (name: string, username: string, dateOfBirth: string, email: string, password: string, passwordVerify: string) => {
     return dispatch => {
-        dispatch(actions.app.loading())
-        alert('name: ' + name)
-        alert('username: ' + username)
-        alert('dateOfBirth: ' + dateOfBirth)
-        alert('email: ' + email)
-        alert('password: ' + password)
-        alert('passwordVerify: ' + passwordVerify)
-
         dispatch(actions.user.login(username, password))
     }
 }
