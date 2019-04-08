@@ -51,7 +51,6 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   mainView: {
-    backgroundColor: '#ff7d0c',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1

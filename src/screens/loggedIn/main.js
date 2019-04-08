@@ -3,7 +3,8 @@ import {
   StyleSheet, 
   View, 
   Image, 
-  Text
+  Text,
+  ScrollView
 } from 'react-native'
 import { 
   Button,
@@ -18,6 +19,7 @@ import { connect } from 'react-redux'
 import { actions, States } from '../../store'
 
 import { NavHeader } from './header'
+import { FooterTabs } from './footer'
 
 /**
  * Main component. Display greeting when user is logged in,
@@ -36,25 +38,22 @@ class App extends Component {
 
     // Display greeting with user full name displayed
     return (
-      <View>
+      <View style={styles.screen}>
         <NavHeader/>
-        <Text>Welcome {fullName}!</Text>
-        <Button
-          block rounded
-          style={styles.button}
-          title="logout"
-          onPress={() => {
-            doLogout()
-          }}
-        >
-          <Text>Logout</Text>
-        </Button>
+        <ScrollView>
+          
+          
+        </ScrollView>
+        <FooterTabs/>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    width: "100%"
+  },
   button: {
     marginTop: 10,
     width: "100%"
