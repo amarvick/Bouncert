@@ -35,8 +35,6 @@ class App extends Component {
     const { doLogout, loggedIn, fullName } = this.props
     var screen
 
-    console.log(this.props)
-
     // Display login screen when user is not logged in
     if (loggedIn) screen = (<MainNLI/>)
     else screen = (<MainLI/>)
