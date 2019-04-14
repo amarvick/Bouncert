@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {
-    // Text
-} from 'react-native'
 import { 
     Footer, 
     FooterTab, 
@@ -13,8 +10,6 @@ class App extends Component {
   constructor(props) {
     super(props)
   }
-
-  // selectFeedTab = (tab) => { this.props.switchTabs(tab) }
 
   render() {
     return (

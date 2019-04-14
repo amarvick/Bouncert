@@ -18,12 +18,12 @@ import {
 import { connect } from 'react-redux'
 import { actions, States } from '../../store'
 
-import { Feed } from './nav/feed'
-import { Profile } from './nav/profile'
-import { Messages } from './nav/messages'
-import { Connections } from './nav/connections'
-import { Meet } from './nav/meet'
-import { Events } from './nav/events'
+import { Feed } from './nav/feed/feed'
+import { Profile } from './nav/profile/profile'
+import { Messages } from './nav/messages/messages'
+import { Connections } from './nav/connections/connections'
+import { Meet } from './nav/meet/meet'
+import { Events } from './nav/events/events'
 
 import { NavHeader } from './header'
 import { FooterTabs } from './footer'
