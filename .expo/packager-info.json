@@ -1,9 +1,9 @@
 {
   "packagerPort": 19001,
-  "packagerPid": 11460,
+  "packagerPid": 18460,
   "expoServerNgrokUrl": "https://vb-2js.anonymous.bouncert-app.exp.direct",
   "packagerNgrokUrl": "https://packager.vb-2js.anonymous.bouncert-app.exp.direct",
-  "ngrokPid": 7184,
+  "ngrokPid": 15328,
   "devToolsPort": 19002,
   "expoServerPort": 19000
 }

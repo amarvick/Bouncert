@@ -47,7 +47,6 @@ class App extends Component {
   }
 
   switchTabs = (tab) => {
-    // alert(tab)
     this.setState({ screen: tab })
   }
 
