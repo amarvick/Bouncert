@@ -31,7 +31,7 @@ var logo = require('../../../assets/logo1.png')
  */
 export class MainNLI extends Component {
   constructor() {
-    super() 
+    super()
 
     this.state = {
       screenDisplayStatus: 'Main'
@@ -42,19 +42,20 @@ export class MainNLI extends Component {
     this.displayLogin = this.displayLogin.bind(this)
   }
 
-  displayMain() { this.setState({ screenDisplayStatus: 'Main'}) }
-  displaySignUp() { this.setState({ screenDisplayStatus: 'Sign Up'}) }
-  displayLogin() { this.setState({ screenDisplayStatus: 'Login'}) }
+  displayMain = () => this.setState({ screenDisplayStatus: 'Main'})
+  displaySignUp = () => this.setState({ screenDisplayStatus: 'Sign Up'})
+  displayLogin = () => this.setState({ screenDisplayStatus: 'Login'})
 
   render() {
-
-    var screenDisplayStatus = this.state.screenDisplayStatus
+    let screenDisplayStatus = this.state.screenDisplayStatus
     var screenDisplay
 
-    if (screenDisplayStatus === 'Main') screenDisplay = ( <Main displaySignUp={this.displaySignUp} displayLogin={this.displayLogin}/> )
-    else if (screenDisplayStatus === 'Login') screenDisplay = ( <Login goBack={this.displayMain}/> )
-    else if (screenDisplayStatus === 'Sign Up') screenDisplay = ( <SignUp goBack={this.displayMain}/> )
-
+    if (screenDisplayStatus === 'Main')
+      screenDisplay = ( <Main displaySignUp={this.displaySignUp} displayLogin={this.displayLogin}/> )
+    else if (screenDisplayStatus === 'Login')
+      screenDisplay = ( <Login goBack={this.displayMain}/> )
+    else if (screenDisplayStatus === 'Sign Up')
+      screenDisplay = ( <SignUp goBack={this.displayMain}/> )
 
     return (
       <View style={styles.mainView}>
@@ -69,10 +70,11 @@ export class MainNLI extends Component {
 const styles = StyleSheet.create({
     mainView: {
       backgroundColor: '#ff7d0c',
+      flex: 1,
       alignItems: 'center',
       justifyContent: 'center'
     },
-  
+
     button: {
       marginTop: 10,
       width: "100%"

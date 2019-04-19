@@ -8,7 +8,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Messages</Text>
+      <Text>All messages sent to you</Text>
     );
   }
 }

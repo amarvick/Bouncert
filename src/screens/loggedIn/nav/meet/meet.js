@@ -8,7 +8,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Meet</Text>
+      <Text>Swipe right/left</Text>
     );
   }
 }

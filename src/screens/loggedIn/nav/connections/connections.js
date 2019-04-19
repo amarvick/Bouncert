@@ -8,7 +8,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Connections</Text>
+      <Text>All your connections; view their profiles, including what they post... have the option to message them...</Text>
     );
   }
 }
