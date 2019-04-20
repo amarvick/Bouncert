@@ -11,6 +11,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "expo": "^32.0.0",
+    "jwt-decode": "^2.2.0",
+    "lint": "^1.1.2",
     "native-base": "^2.12.1",
     "react": "16.5.0",
     "react-art": "^16.8.5",

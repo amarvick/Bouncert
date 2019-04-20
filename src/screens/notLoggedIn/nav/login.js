@@ -40,13 +40,10 @@ class App extends Component {
   render() {
     const { loading, doLogin } = this.props
 
-    // show only loading indicator if loading state is true
     if (loading) {
       return <ActivityIndicator />
     }
 
-
-    // display login screen
     return (
       <View style={styles.mainView}>
         <Text>Login</Text>
@@ -123,8 +120,7 @@ const mapStateToProps = (state) => ({
   loading: state.user.loading
 })
 
-/**
- * Login screen.
- */
-export const Login = connect(mapStateToProps, mapDispatchToProps)(App)
-
+export const Login = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

@@ -8,7 +8,7 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Feed</Text>
+      <Text>Show what your connections post here, any interesting concerts or events happening near you (based on your preferences)</Text>
     );
   }
 }

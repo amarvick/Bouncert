@@ -8,9 +8,9 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Connections</Text>
+      <Text>Events happening near you. Allow for filters; all events, events based off your interests, near you...</Text>
     );
   }
 }
 
-export const Connections = App
+export const Events = App

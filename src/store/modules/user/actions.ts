@@ -1,61 +1,72 @@
+import { AsyncStorage } from 'react-native';
+
 import * as types from './constants'
 import { actions } from '../'
 
-/**
-* Sign Up.
-* @param {string} name 
-* @param {string} username
-* @param {string} dateOfBirth
-* @param {string} email
-* @param {string} password
-* @param {string} passwordVerify
-*/
+import axios from 'axios'
+import setAuthToken from '../../../utils/setAuthToken'
+import jwt_decode from 'jwt-decode'
 
-export const signup = (name: string, username: string, dateOfBirth: string, email: string, password: string, passwordVerify: string) => {
-    return dispatch => {
-        dispatch(actions.user.login(username, password))
-    }
+export const signup = (name: string, username: string, dateOfBirth: Date = new Date(), email: string, password: string, passwordVerify: string) => {
+  const userData = {
+    name: name,
+    username: username,
+    dateOfBirth: dateOfBirth,
+    email: email,
+    password: password
+  }
+
+  if (password !== passwordVerify) return null; // AM - not really null :) 
+
+  return dispatch => {
+    dispatch(actions.app.loading())
+  }
 }
-
-/**
-* Sign in.
-* @param {string} username 
-* @param {string} password
-*/
 
 export const login = (username: string, password: string) => {
-    // async call
-    return dispatch => {
-        // turn loading animation on
-        // by dispacthing `loading` action from module `app`.
-        // yes, each action can interact with another module actions.
-        dispatch(actions.app.loading())
+  const userData = {
+    username: username,
+    password: password
+  }
 
-        // simulate ajax login
-        // in real world you can use `fetch` to make ajax request. AM - make this change when BE is complete
-        setTimeout(() => {
-            if (username === 'admin' && password === 'secret') {
-                dispatch({
-                    type: types.LOGIN,
-                    payload: {
-                        userId: username,
-                        fullName: 'Clark Kent'
-                    }
-                })
-            }
+  return dispatch => {
+    dispatch(actions.app.loading())
 
-            // turn loading animation off
-            dispatch(actions.app.loading(false))
-        }, 3000)
-    }
+    // axios.post('http://10.0.2.2:3001/api/users/login', userData)
+    axios.post('http://bouncert-be.herokuapp.com/api/users/login', userData)
+      .then(res => {
+        const { token } = res.data
+        AsyncStorage.setItem("jwtToken", token)
+        setAuthToken(token)
+
+        dispatch({
+          type: types.LOGIN,
+          payload: {
+            userId: userData.username,
+            fullName: 'Alex Marvick' // AM - no
+          }
+        })
+      })
+
+      .catch(err => {
+        console.log(err.response.data)
+        dispatch({
+            type: types.ERRORS,
+            payload: err.response.data
+        })
+      })
+      // turn loading animation off
+    dispatch(actions.app.loading(false))
+  }
 }
 
-/**
-* Sign out.
-*/
 export const logout = () => {
-    // direct/sync call
-    return {
-        type: types.LOGOUT
-    }
+  // Remove token from local storage
+  localStorage.removeItem('jwtToken');
+  // Remove auth header for future requests
+  setAuthToken(false)
+  // direct/sync call
+  return {
+    type: types.LOGOUT
+  }
 }

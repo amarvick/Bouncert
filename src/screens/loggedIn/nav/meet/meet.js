@@ -8,9 +8,9 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Events</Text>
+      <Text>Swipe right/left</Text>
     );
   }
 }
 
-export const Events = App
+export const Meet = App

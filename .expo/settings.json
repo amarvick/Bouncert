@@ -1,7 +1,7 @@
 {
-  "urlRandomness": "vb-2js",
   "hostType": "localhost",
   "lanType": "ip",
   "dev": true,
-  "minify": false
+  "minify": false,
+  "urlRandomness": "88-qdw"
 }

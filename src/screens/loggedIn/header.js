@@ -11,7 +11,6 @@ import {
     Right, 
     Button, 
     Icon
-    // Title 
 } from 'native-base';
 
 class App extends Component {

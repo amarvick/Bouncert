@@ -8,9 +8,9 @@ import {
 class App extends Component {
   render() {
     return (
-      <Text>Meet</Text>
+      <Text>All your connections; view their profiles, including what they post... have the option to message them...</Text>
     );
   }
 }
 
-export const Meet = App
+export const Connections = App
