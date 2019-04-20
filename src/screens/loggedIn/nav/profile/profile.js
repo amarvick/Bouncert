@@ -31,9 +31,9 @@ class App extends Component {
     super(props)
 
     this.state = {
-      name: '',
-      username: '',
-      password: ''
+      name: this.props.user.name,
+      username: this.props.user.userName,
+      password: this.props.user.password
     }
   }
 

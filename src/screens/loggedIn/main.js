@@ -54,12 +54,38 @@ class App extends Component {
     var fullName = this.props.fullName
     var screen
 
-    if (this.state.screen === 'Feed') screen = (<Feed/>)
-    else if (this.state.screen === 'Profile') screen = (<Profile/>)
-    else if (this.state.screen === 'Messages') screen = (<Messages/>)
-    else if (this.state.screen === 'Connections') screen = (<Connections/>)
-    else if (this.state.screen === 'Meet') screen = (<Meet/>)
-    else if (this.state.screen === 'Events') screen = (<Events/>)
+    if (this.state.screen === 'Feed') {
+      screen = (
+        <Feed
+        />
+      )
+    } else if (this.state.screen === 'Profile') {
+      screen = (
+        <Profile
+          user={this.props.user}
+        />
+      )
+    } else if (this.state.screen === 'Messages') {
+      screen = (
+        <Messages
+        />
+      )
+    } else if (this.state.screen === 'Connections') {
+      screen = (
+        <Connections
+        />
+      )
+    } else if (this.state.screen === 'Meet') {
+      screen = (
+        <Meet
+        />
+      )
+    } else if (this.state.screen === 'Events') {
+      screen = (
+        <Events
+        />
+      )
+    }
 
     
     return (
@@ -97,6 +123,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
   
 const mapStateToProps = (state) => ({
+    user: state.user,
     fullName: state.user.fullName
 })
   
