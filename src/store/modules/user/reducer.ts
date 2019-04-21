@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { LOGIN, LOGOUT } from './constants'
+import { LOGIN, LOGOUT, ERRORS } from './constants'
 
 export type UserState = {
   loggedIn: boolean,
@@ -17,7 +17,7 @@ export default handleActions(
       const p = action.payload
       return {
         loggedIn: true,
-        user: p.user
+        user: p
       }
     },
 
@@ -26,6 +26,11 @@ export default handleActions(
         loggedIn: false,
         user: {} 
       }
+    },
+
+    // Errors to return
+    [ERRORS]: (): UserState => {
+      return null
     }
   },
   initialState

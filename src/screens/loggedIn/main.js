@@ -51,8 +51,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.user)
-    var fullName = this.props.fullName
     var screen
 
     if (this.state.screen === 'Feed') {
@@ -123,8 +121,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
   
 const mapStateToProps = (state) => ({
-    user: state.user,
-    fullName: state.user.fullName
+    user: state.user.user
 })
   
 export const MainLI = connect(mapStateToProps, mapDispatchToProps)(App)

@@ -31,17 +31,13 @@ export const login = (username: string, password: string) => {
 
   return dispatch => {
     dispatch(actions.app.loading())
-
-    // axios.post('http://10.0.2.2:3001/api/users/login', userData)
     axios.post('http://bouncert-be.herokuapp.com/api/users/login', userData)
       .then(res => {
         const { token } = res.data
         AsyncStorage.setItem("jwtToken", token)
         setAuthToken(token)
-        console.log(token)
 
         const decoded = jwt_decode(token)
-        console.log(decoded)
 
         dispatch({
           type: types.LOGIN,
@@ -59,6 +55,10 @@ export const login = (username: string, password: string) => {
       // turn loading animation off
     dispatch(actions.app.loading(false))
   }
+}
+
+export const saveData = (user: object) => {
+
 }
 
 export const logout = () => {

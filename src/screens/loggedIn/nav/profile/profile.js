@@ -32,13 +32,13 @@ class App extends Component {
 
     this.state = {
       name: this.props.user.name,
-      username: this.props.user.userName,
-      password: this.props.user.password
+      username: this.props.user.username
     }
   }
 
   render() {
     const { loading, doSignup } = this.props
+    console.log(this.props.user)
 
     // show only loading indicator if loading state is true
     if (loading) {
@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <View style={styles.mainView}>
         <Text>Sign Up</Text>
-     
+        
         <View style={styles.form}>
           <View style={styles.formLabel}>
             <Label>Name</Label>
@@ -67,15 +67,6 @@ class App extends Component {
               value={this.state.username}
             />
           </View>
-
-          <View style={styles.formLabel}>
-            <Label>Password</Label>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
-            />
-          </View>
         </View>
 
         <Button
@@ -83,10 +74,9 @@ class App extends Component {
           style={styles.button}
           title="login"
           onPress={() => {
-            doSignup(this.state.name, this.state.username, this.state.dateOfBirth, this.state.email, this.state.password, this.state.passwordVerify) // Save data here
+            saveInfo(this.state.name, this.state.username)
           }}
         ><Text>Save</Text></Button>
-
       </View>
     )
   }
@@ -130,7 +120,4 @@ const mapStateToProps = (state) => ({
   loading: state.user.loading
 })
 
-/**
- * Login screen.
- */
 export const Profile = connect(mapStateToProps, mapDispatchToProps)(App)
