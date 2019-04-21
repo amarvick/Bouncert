@@ -3,12 +3,12 @@ import { LOGIN, LOGOUT } from './constants'
 
 export type UserState = {
   loggedIn: boolean,
-  username: string
+  user: object
 }
 
 const initialState: UserState = {
   loggedIn: false,
-  username: ''
+  user: {}
 }
 
 export default handleActions(
@@ -17,14 +17,14 @@ export default handleActions(
       const p = action.payload
       return {
         loggedIn: true,
-        username: p.username
+        user: p.user
       }
     },
 
     [LOGOUT]: (): UserState => {
       return {
         loggedIn: false,
-        username: ''
+        user: {} 
       }
     }
   },

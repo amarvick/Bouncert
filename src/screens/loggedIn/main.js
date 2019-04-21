@@ -51,6 +51,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.user)
     var fullName = this.props.fullName
     var screen
 
@@ -86,7 +87,6 @@ class App extends Component {
         />
       )
     }
-
     
     return (
       <View style={styles.screen}>

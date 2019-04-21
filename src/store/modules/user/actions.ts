@@ -38,21 +38,22 @@ export const login = (username: string, password: string) => {
         const { token } = res.data
         AsyncStorage.setItem("jwtToken", token)
         setAuthToken(token)
+        console.log(token)
+
+        const decoded = jwt_decode(token)
+        console.log(decoded)
 
         dispatch({
           type: types.LOGIN,
-          payload: {
-            userId: userData.username,
-            fullName: 'Alex Marvick' // AM - no
-          }
+          payload: decoded
         })
       })
 
       .catch(err => {
-        console.log(err.response.data)
+        console.log(err)
         dispatch({
             type: types.ERRORS,
-            payload: err.response.data
+            payload: err
         })
       })
       // turn loading animation off

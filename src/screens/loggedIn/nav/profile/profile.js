@@ -45,8 +45,6 @@ class App extends Component {
       return <ActivityIndicator />
     }
 
-
-    // display login screen
     return (
       <View style={styles.mainView}>
         <Text>Sign Up</Text>
