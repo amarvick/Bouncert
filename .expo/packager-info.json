@@ -1,10 +1,10 @@
 {
   "expoServerNgrokUrl": "https://88-qdw.anonymous.bouncert-app.exp.direct",
   "packagerNgrokUrl": "https://packager.88-qdw.anonymous.bouncert-app.exp.direct",
-  "ngrokPid": 5888,
+  "ngrokPid": 21964,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 19824,
+  "packagerPid": 10748,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import {
-    Text
+    Text,
+    View
 } from 'react-native'
 import { 
 } from 'native-base';
 
+import Swipe from './swipe'
+
 class App extends Component {
   render() {
     return (
-      <Text>Swipe right/left</Text>
+      <View>
+        <Text>Swipe right/left</Text>
+        <Swipe/>
+      </View>
     );
   }
 }

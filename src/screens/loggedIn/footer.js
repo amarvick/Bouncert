@@ -15,7 +15,6 @@ class App extends Component {
     return (
       <Footer>
         <FooterTab>
-          
           <Button onPress={() => this.props.switchTabs('Meet')}>
             <Icon name="people" />
           </Button>
