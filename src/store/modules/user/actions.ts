@@ -57,8 +57,29 @@ export const login = (username: string, password: string) => {
   }
 }
 
-export const saveData = (user: object) => {
+export const saveData = (user: object, id: string) => {
+  console.log('*************************')
+  console.log({...user, id})
+  console.log('*************************')
+  return dispatch => {
+    dispatch(actions.app.loading())
+    axios.post('http://bouncert-be.herokuapp.com/api/users/saveInfo', {...user, id})
+      .then(res => {
+        alert('updated!')
+        console.log(res.data)
+      })
 
+      .catch(err => {
+        alert('error')
+        console.log(err)
+        dispatch({
+            type: types.ERRORS,
+            payload: err
+        })
+      })
+      // turn loading animation off
+    dispatch(actions.app.loading(false))
+  }
 }
 
 export const logout = () => {

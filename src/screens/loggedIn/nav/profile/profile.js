@@ -16,7 +16,7 @@ import {
   Label
 } from 'native-base'
 import { connect } from 'react-redux'
-// import { actions, States } from '../../../../store'
+import { actions, States } from '../../../../store'
 
 /**
  * A signup component that displays a form for user to make an account.
@@ -37,8 +37,7 @@ class App extends Component {
   }
 
   render() {
-    const { loading, doSignup } = this.props
-    console.log(this.props.user)
+    const { loading, saveData } = this.props
 
     // show only loading indicator if loading state is true
     if (loading) {
@@ -48,7 +47,7 @@ class App extends Component {
     return (
       <View style={styles.mainView}>
         <Text>Sign Up</Text>
-        
+
         <View style={styles.form}>
           <View style={styles.formLabel}>
             <Label>Name</Label>
@@ -74,7 +73,7 @@ class App extends Component {
           style={styles.button}
           title="login"
           onPress={() => {
-            saveInfo(this.state.name, this.state.username)
+            saveData(this.state, this.props.user.id)
           }}
         ><Text>Save</Text></Button>
       </View>
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
   startup: () => dispatch(StartupActions.startup()),
-  doSignup: (name, username, dateOfBirth, email, password, passwordVerify) => dispatch(actions.user.signup(name, username, dateOfBirth, email, password, passwordVerify))
+  saveData: (user, id) => dispatch(actions.user.saveData(user, id))
 })
 
 const mapStateToProps = (state) => ({

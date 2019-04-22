@@ -17,16 +17,16 @@ class App extends Component {
         <FooterTab>
           
           <Button onPress={() => this.props.switchTabs('Meet')}>
-            <Icon name="apps" />
+            <Icon name="people" />
           </Button>
           <Button onPress={() => this.props.switchTabs('Connections')}>
-            <Icon name="camera" />
+            <Icon name="chatboxes" />
           </Button>
           <Button onPress={() => this.props.switchTabs('Feed')}>
-            <Icon name="apps" />
+            <Icon name="paper" />
           </Button>
           <Button onPress={() => this.props.switchTabs('Events')}>
-            <Icon active name="navigate" />
+            <Icon active name="calendar" />
           </Button>
           <Button onPress={() => this.props.switchTabs('Profile')}>
             <Icon name="person" />
