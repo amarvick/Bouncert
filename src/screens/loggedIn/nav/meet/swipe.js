@@ -44,6 +44,14 @@ class Swipe extends Component {
       directionalOffsetThreshold: 80
     };
  
+    if (this.props.allUsers === null || this.props.allUsers.length === 0) {
+      return (
+        <p>
+          No recommendations right now
+        </p>
+      )
+    }
+
     return (
       <GestureRecognizer
         onSwipe={(direction, state) => this.onSwipe(direction, state)}

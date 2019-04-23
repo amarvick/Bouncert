@@ -46,6 +46,15 @@ class App extends Component {
     this.switchTabs = this.switchTabs.bind(this)
   }
 
+  componentDidMount = () => {
+    this.props.getUsers(
+      {
+        connections: this.props.user.connections, 
+        uninterested_users: this.props.user.uninterested_users
+      }
+    )
+  }
+
   switchTabs = (tab) => {
     this.setState({ screen: tab })
   }
@@ -77,6 +86,7 @@ class App extends Component {
     } else if (this.state.screen === 'Meet') {
       screen = (
         <Meet
+          queryResults={this.props.user.queried_users}
         />
       )
     } else if (this.state.screen === 'Events') {
@@ -95,7 +105,7 @@ class App extends Component {
         </ScrollView>
 
         <FooterTabs
-          switchTabs = {this.switchTabs}
+          switchTabs={this.switchTabs}
           style={styles.footer}
         />
       </View>
@@ -117,6 +127,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => ({
     dispatch: dispatch,
     startup: () => dispatch(StartupActions.startup()),
+    getUsers: () => dispatch(StartupActions.getUsers()), // AM - this will happen upon loading
     doLogout: () => dispatch(actions.user.logout())
 })
   

@@ -7,6 +7,7 @@ import axios from 'axios'
 import setAuthToken from '../../../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
 
+// Need to finish later
 export const signup = (name: string, username: string, dateOfBirth: Date = new Date(), email: string, password: string, passwordVerify: string) => {
   const userData = {
     name: name,
@@ -58,9 +59,6 @@ export const login = (username: string, password: string) => {
 }
 
 export const saveData = (user: object, id: string) => {
-  console.log('*************************')
-  console.log({...user, id})
-  console.log('*************************')
   return dispatch => {
     dispatch(actions.app.loading())
     axios.post('http://bouncert-be.herokuapp.com/api/users/saveInfo', {...user, id})
@@ -79,6 +77,27 @@ export const saveData = (user: object, id: string) => {
       })
       // turn loading animation off
     dispatch(actions.app.loading(false))
+  }
+}
+
+// Query users for swiping right/left
+export const getUsers = (userProperties: object) => {
+  return dispatch => {
+    dispatch(actions.app.loading())
+    axios.post('http://bouncert-be.herokuapp.com/api/users/getUsers', userProperties)
+      .then(res => {
+        alert('all users retrieved. ')
+        console.log(res.data)
+      })
+
+      .catch(err => {
+        alert('error in fetching users. See console.')
+        console.log(err)
+        dispatch({
+          type: types.ERRORS,
+          payload: err
+        })
+      })
   }
 }
 
