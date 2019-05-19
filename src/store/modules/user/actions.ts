@@ -51,14 +51,12 @@ export const login = (username: string, password: string) => {
       })
 
       // AM todo - consider retrieving all data including the getUsers from here as well before displaying log in screen
-
       .catch(err => {
-        console.log('error!!!')
-        console.log(err)
         dispatch({
             type: types.ERRORS,
             payload: err
         })
+        console.log(err)
       })
       // turn loading animation off
     dispatch(actions.app.loading(false))
@@ -96,7 +94,7 @@ export const getUsers = (user) => {
   return dispatch => {
     dispatch(actions.app.loading())
     const userProperties = {
-      connections: user.connections,
+      interested_users: user.interested_users,
       uninterested_users: user.uninterested_users,
       id: user.id
     }

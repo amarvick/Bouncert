@@ -14,34 +14,44 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      myText: 'I\'m ready to get swiped!',
-      gestureName: 'none',
-      backgroundColor: '#fff'
+      queried_users: this.props.user.queried_users,
+      uninterested_users: this.props.user.uninterested_users,
+      interested_users: this.props.user.interested_users,
     };
   }
  
-  onSwipeLeft(gestureState) {
-    this.setState({myText: 'You swiped left!'});
-  }
- 
-  onSwipeRight(gestureState) {
-    this.setState({myText: 'You swiped right!'});
-  }
- 
-  onSwipe(gestureName, gestureState) {
+  onSwipe(gestureName, users) {
     const {SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
     this.setState({gestureName: gestureName});
     switch (gestureName) {
       case SWIPE_LEFT:
         // Remove user from your recommendations permanently (User has a 'left swipe' array?)
-        this.setState({backgroundColor: 'blue'});
-        this.props.user.push(allUsers[0])
-        allUsers[0].slice(0, 1)
+        let uninterested_user = users[0]
+        users.slice(0, 1)
+        this.setState({ 
+          queried_users: users
+        })
+
+        this.setState(prevState => ({
+          uninterested_users: [...prevState.uninterested_users, uninterested_user]
+        }))
         break;
       case SWIPE_RIGHT:
         // Put user in 'right swipe' array. Check if you are in theirs; if yes, add to connections; if no, do nothing
-        this.setState({backgroundColor: 'yellow'});
+        let interested_user = users[0]
+        
+        this.setState({ 
+          queried_users: users
+        })
+
+        this.setState(prevState => ({
+          interested_users: [...prevState.interested_users, interested_user]
+        }))
         break;
+    }
+
+    if (gestureName === SWIPE_LEFT || gestureName === SWIPE_RIGHT) {
+      this.props.saveData(this.state, this.props.user.id)
     }
   }
  
@@ -64,21 +74,21 @@ class App extends Component {
 
     return (
       <GestureRecognizer
-        onSwipe={(direction, state) => this.onSwipe(direction, state)}
-        onSwipeLeft={(state) => this.onSwipeLeft(state)}
-        onSwipeRight={(state) => this.onSwipeRight(state)}
+        onSwipe={(direction, state) => this.onSwipe(direction, this.state.queriedUsers)}
         config={config}
         style={{
           flex: 1,
           backgroundColor: this.state.backgroundColor
         }}
         >
-        <Text>{this.state.myText}</Text>
         <Text>
-          { this.props.allUsers[0].name }
+          {this.state.myText}
         </Text>
         <Text>
-          { this.props.allUsers[0].location }
+          { this.state.queriedUsers[0].name }
+        </Text>
+        <Text>
+          { this.state.queriedUsers[0].location }
         </Text>
         <Text>
           onSwipe callback received gesture: {this.state.gestureName}

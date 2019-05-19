@@ -90,7 +90,6 @@ class App extends Component {
     } else if (this.state.screen === 'Meet') {
       screen = (
         <Meet
-          queryResults={this.props.user.queried_users} 
           saveData={this.props.saveData}
           user={this.props.user}
         />
