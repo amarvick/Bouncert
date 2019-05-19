@@ -17,7 +17,8 @@ class App extends Component {
       <View>
         <Text>Swipe right/left</Text>
         <Swipe
-          allUsers={this.props.queried_users}
+          allUsers={this.props.queryResults}
+          user={this.props.user}
         />
       </View>
     );

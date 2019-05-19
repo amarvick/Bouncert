@@ -44,15 +44,17 @@ class App extends Component {
     }
 
     this.switchTabs = this.switchTabs.bind(this)
+    this.props.saveData = this.props.saveData.bind(this)
   }
 
   componentDidMount = () => {
-    this.props.getUsers(
-      {
-        connections: this.props.user.connections, 
-        uninterested_users: this.props.user.uninterested_users
-      }
-    )
+    if (this.props.user.queried_users !== undefined && this.props.user.queried_users.length === 0) {
+      // Only query users who aren't already current connections or ones you aren't interested in
+      this.props.getUsers(this.props.user)
+    } else {
+      // otherwise, re-query users so they update. AM - could be a bad practice; definitely a more intricate solution but do this for now.
+      // AM - to make function for this
+    }
   }
 
   switchTabs = (tab) => {
@@ -70,6 +72,7 @@ class App extends Component {
     } else if (this.state.screen === 'Profile') {
       screen = (
         <Profile
+          saveData={this.props.saveData}
           user={this.props.user}
         />
       )
@@ -81,12 +84,15 @@ class App extends Component {
     } else if (this.state.screen === 'Connections') {
       screen = (
         <Connections
+          connections={this.props.user.connections}
         />
       )
     } else if (this.state.screen === 'Meet') {
       screen = (
         <Meet
-          queryResults={this.props.user.queried_users}
+          queryResults={this.props.user.queried_users} 
+          saveData={this.props.saveData}
+          user={this.props.user}
         />
       )
     } else if (this.state.screen === 'Events') {
@@ -127,7 +133,8 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => ({
     dispatch: dispatch,
     startup: () => dispatch(StartupActions.startup()),
-    getUsers: () => dispatch(StartupActions.getUsers()), // AM - this will happen upon loading
+    getUsers: (user, userProps) => dispatch(actions.user.getUsers(user, userProps)),
+    saveData: (user, id) => dispatch(actions.user.saveData(user, id)),
     doLogout: () => dispatch(actions.user.logout())
 })
   

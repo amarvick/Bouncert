@@ -7,6 +7,10 @@ import axios from 'axios'
 import setAuthToken from '../../../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
 
+import constants from '../../../../assets/constants'
+
+const apiLink = constants.testLocal ? constants.backEndLinkLocal : constants.backEndLink
+
 // Need to finish later
 export const signup = (name: string, username: string, dateOfBirth: Date = new Date(), email: string, password: string, passwordVerify: string) => {
   const userData = {
@@ -32,12 +36,12 @@ export const login = (username: string, password: string) => {
 
   return dispatch => {
     dispatch(actions.app.loading())
-    axios.post('http://bouncert-be.herokuapp.com/api/users/login', userData)
+    console.log(apiLink)
+    axios.post(apiLink + 'api/users/login', userData)
       .then(res => {
         const { token } = res.data
         AsyncStorage.setItem("jwtToken", token)
         setAuthToken(token)
-
         const decoded = jwt_decode(token)
 
         dispatch({
@@ -46,7 +50,10 @@ export const login = (username: string, password: string) => {
         })
       })
 
+      // AM todo - consider retrieving all data including the getUsers from here as well before displaying log in screen
+
       .catch(err => {
+        console.log('error!!!')
         console.log(err)
         dispatch({
             type: types.ERRORS,
@@ -61,8 +68,12 @@ export const login = (username: string, password: string) => {
 export const saveData = (user: object, id: string) => {
   return dispatch => {
     dispatch(actions.app.loading())
-    axios.post('http://bouncert-be.herokuapp.com/api/users/saveInfo', {...user, id})
+    axios.post(apiLink + 'api/users/saveInfo', {...user, id})
       .then(res => {
+        dispatch({
+          type: types.UPDATE_STATE,
+          payload: user
+        })
         alert('updated!')
         console.log(res.data)
       })
@@ -81,13 +92,25 @@ export const saveData = (user: object, id: string) => {
 }
 
 // Query users for swiping right/left
-export const getUsers = (userProperties: object) => {
+export const getUsers = (user) => {
   return dispatch => {
     dispatch(actions.app.loading())
-    axios.post('http://bouncert-be.herokuapp.com/api/users/getUsers', userProperties)
+    const userProperties = {
+      connections: user.connections,
+      uninterested_users: user.uninterested_users,
+      id: user.id
+    }
+    axios.post(apiLink + 'api/users/getUsers', userProperties)
       .then(res => {
-        alert('all users retrieved. ')
-        console.log(res.data)
+        var queriedUserIds = []
+        // AM - we want to return the following: name, location, interests... Look at bumble app and see what's returned there.
+        // for (let i = 0; i < res.data.length; i++) {
+        //   queriedUserIds.push(res.data[i]._id)
+        // }
+
+        user.queried_users = res.data
+
+        dispatch(saveData(user, user.id))
       })
 
       .catch(err => {
@@ -98,6 +121,7 @@ export const getUsers = (userProperties: object) => {
           payload: err
         })
       })
+    dispatch(actions.app.loading(false))
   }
 }
 

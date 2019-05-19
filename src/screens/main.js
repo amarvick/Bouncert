@@ -35,7 +35,7 @@ class App extends Component {
     const { doLogout, loggedIn, fullName } = this.props
     var screen
 
-    if (loggedIn) 
+    if (!loggedIn) 
       screen = (<MainNLI/>)
     else 
       screen = (<MainLI/>)

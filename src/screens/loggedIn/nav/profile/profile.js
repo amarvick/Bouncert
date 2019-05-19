@@ -73,7 +73,7 @@ class App extends Component {
           style={styles.button}
           title="login"
           onPress={() => {
-            saveData(this.state, this.props.user.id)
+            this.props.saveData(this.state, this.props.user.id)
           }}
         ><Text>Save</Text></Button>
       </View>
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
   startup: () => dispatch(StartupActions.startup()),
-  saveData: (user, id) => dispatch(actions.user.saveData(user, id))
 })
 
 const mapStateToProps = (state) => ({

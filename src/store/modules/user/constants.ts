@@ -1,4 +1,5 @@
 export const LOGIN = 'USER/LOGIN'
 export const LOGOUT = 'USER/LOGOUT'
+export const UPDATE_STATE = 'UPDATE_STATE'
 export const SAVEDATA = 'USER/SAVEDATA'
 export const ERRORS = 'USER/ERRORS'
