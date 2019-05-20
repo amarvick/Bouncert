@@ -14,6 +14,24 @@ export type UserState = {
 const initialState: UserState = {
   loggedIn: false,
   user: {}
+
+    // "_id": {
+    //   "$oid": "5cb95af0d9ac368f2851552a"
+    // },
+    // "name": "Alex Marvick",
+    // "email": "amarvick94@gmail.com",
+    // "username": "alex",
+    // "password": "$2a$10$Ie5aNFp1FoOUhcicTUgECunoYFqv.aMqv2oWZakwOqnBRnVSKOrjK",
+    // "date": {
+    //     "$date": "2019-04-19T05:21:52.815Z"
+    // },
+    // "connections": [],
+    // "queried_users": [
+    // ],
+    // "interested_users": [],
+    // "uninterested_users": [],
+    // "location": "Seattle, WA",
+    // "__v": 0}
 }
 
 export default handleActions(

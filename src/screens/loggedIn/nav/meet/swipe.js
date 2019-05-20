@@ -1,5 +1,3 @@
-'use strict';
- 
 import React, {Component} from 'react';
 import {
   View,
@@ -7,12 +5,13 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { connect } from 'react-redux'
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import { actions, States } from '../../../../store'
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
  
-class App extends Component {
- 
+class Swipe extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
       queried_users: this.props.user.queried_users,
       uninterested_users: this.props.user.uninterested_users,
@@ -22,47 +21,45 @@ class App extends Component {
  
   onSwipe(gestureName, users) {
     const {SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
-    this.setState({gestureName: gestureName});
-    switch (gestureName) {
-      case SWIPE_LEFT:
-        // Remove user from your recommendations permanently (User has a 'left swipe' array?)
-        let uninterested_user = users[0]
-        users.slice(0, 1)
-        this.setState({ 
-          queried_users: users
-        })
-
-        this.setState(prevState => ({
-          uninterested_users: [...prevState.uninterested_users, uninterested_user]
-        }))
-        break;
-      case SWIPE_RIGHT:
-        // Put user in 'right swipe' array. Check if you are in theirs; if yes, add to connections; if no, do nothing
-        let interested_user = users[0]
-        
-        this.setState({ 
-          queried_users: users
-        })
-
-        this.setState(prevState => ({
-          interested_users: [...prevState.interested_users, interested_user]
-        }))
-        break;
-    }
-
     if (gestureName === SWIPE_LEFT || gestureName === SWIPE_RIGHT) {
+      switch (gestureName) {
+        case SWIPE_LEFT:
+          // Remove user from your recommendations permanently (User has a 'left swipe' array?)
+          let uninterested_user = users[0]
+          users.shift()
+          let new_uninterested_users = this.state.uninterested_users.push(uninterested_user)
+
+          this.setState(prevState => ({
+            queried_users: users,
+            uninterested_users: new_uninterested_users
+          }))
+          break;
+        case SWIPE_RIGHT:
+          // Put user in 'right swipe' array. Check if you are in theirs; if yes, add to connections; if no, do nothing
+          let interested_user = users[0]
+          users.shift()
+          let new_interested_users = this.state.interested_users.push(interested_user)
+
+          this.setState({
+            queried_users: users,
+            interested_users: new_interested_users
+          })
+          break;
+      }
+
+      alert(gestureName)
+      console.log(this.state)
       this.props.saveData(this.state, this.props.user.id)
     }
   }
  
   render() {
-    console.log(this.props.allUsers)
     const config = {
       velocityThreshold: 0.3,
       directionalOffsetThreshold: 80
     };
  
-    if (this.props.allUsers !== null && this.props.allUsers.length === 0) {
+    if (this.state.queried_users !== null && this.state.queried_users.length === 0) {
       return (
         <TouchableHighlight>
           <Text>
@@ -74,25 +71,19 @@ class App extends Component {
 
     return (
       <GestureRecognizer
-        onSwipe={(direction, state) => this.onSwipe(direction, this.state.queriedUsers)}
+        onSwipe={(direction, state) => this.onSwipe(direction, this.state.queried_users)}
         config={config}
         style={{
-          flex: 1,
-          backgroundColor: this.state.backgroundColor
+          flex: 1
+          // backgroundColor: this.state.backgroundColor
         }}
-        >
+      >
         <Text>
-          {this.state.myText}
+          { this.state.queried_users[0].name }
         </Text>
         <Text>
-          { this.state.queriedUsers[0].name }
-        </Text>
-        <Text>
-          { this.state.queriedUsers[0].location }
-        </Text>
-        <Text>
-          onSwipe callback received gesture: {this.state.gestureName}
-        </Text>
+          { this.state.queried_users[0].location }
+        </Text> 
       </GestureRecognizer>
     );
   }
@@ -100,12 +91,11 @@ class App extends Component {
  
 const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
-  startup: () => dispatch(StartupActions.startup()),
-  saveData: (user, id) => dispatch(actions.user.saveData(user, id))
+  startup: () => dispatch(StartupActions.startup())
 })
 
 const mapStateToProps = (state) => ({
   loading: state.user.loading
 })
 
-export const Swipe = connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Swipe)
